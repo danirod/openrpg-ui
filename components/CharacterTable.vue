@@ -1,0 +1,105 @@
+<template>
+  <div>
+    <validation-errors
+      :errors="validationErrors"
+      v-if="validationErrors"
+    ></validation-errors>
+    <b-table
+      id="character-table"
+      ref="character_table"
+      :items="characters"
+      :fields="fields"
+      busy.sync="true"
+    >
+      <template slot="cell(actions)" slot-scope="row">
+        <router-link
+          :to="{ name: 'characters-id', params: { id: row.item.id } }"
+        >
+          <b-button size="sm" class="mr-1">Ver</b-button>
+        </router-link>
+        <router-link
+          :to="{ name: 'characters-id-edit', params: { id: row.item.id } }"
+        >
+          <b-button size="sm" class="mr-1">Editar</b-button>
+        </router-link>
+        <b-button
+          @click="confirmDeleteCharacter(row.item.id)"
+          size="sm"
+          class="mr-1"
+          >Eliminar</b-button
+        >
+      </template>
+    </b-table>
+    <b-modal id="modal-confirm-delete" ref="modal-confirm-delete" hide-footer>
+      <div class="d-block text-center">
+        <p>¿Quieres borrar este personaje?</p>
+        <b-button @click="ok(character_confirm.id)" size="md" variant="success"
+          >OK</b-button
+        >
+        <b-button @click="cancel()" size="md" variant="danger">Cancel</b-button>
+      </div>
+    </b-modal>
+  </div>
+</template>
+
+<script>
+import ValidationErrors from '~/components/alerts/ValidationErrors'
+
+export default {
+  components: { ValidationErrors },
+  data() {
+    return {
+      fields: [
+        { key: 'name' },
+        { key: 'level' },
+        { key: 'experience' },
+        { key: 'actions' }
+      ],
+      characters: [],
+      validationErrors: [],
+      isBusy: false,
+      character_confirm: {}
+    }
+  },
+  mounted() {
+    this.getResults()
+  },
+  methods: {
+    getResults(ctx, callback) {
+      this.$axios.get('/api/characters').then((response) => {
+        this.characters = response.data
+        this.totalRows = response.data.length
+        return this.characters
+      })
+    },
+    confirmDeleteCharacter(id, email) {
+      this.character_confirm = {
+        id
+      }
+      this.$refs['modal-confirm-delete'].show()
+    },
+    ok(id) {
+      this.$axios
+        .delete(`api/characters/${id}`)
+        .then((response) => {
+          this.$bvModal.hide('modal-confirm-delete')
+          this.character_confirm = {}
+          this.characters = this.characters.filter(
+            (character) => character.id !== id
+          )
+        })
+        .catch((err) => {
+          if (err.response.status === 403) {
+            this.$bvModal.hide('modal-confirm-delete')
+            this.character_confirm = {}
+            this.validationErrors.push(err.response.data.message)
+          }
+        })
+    },
+    cancel() {
+      this.$bvModal.hide('modal-confirm-delete')
+      this.character_confirm = {}
+    }
+  }
+}
+</script>
