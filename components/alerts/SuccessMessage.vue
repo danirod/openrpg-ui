@@ -8,10 +8,10 @@
 
 <script>
 export default {
+  props: ['success', 'successMessage'],
   data() {
     return {}
   },
-  props: ['success', 'success_message'],
   computed: {
     isSuccess() {
       return this.success
