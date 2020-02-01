@@ -1,17 +1,17 @@
 <template>
   <div v-if="!isHidden">
     <radial-menu
-      style="margin: auto; margin-top: 300px; background-color: white"
+      id="main-menu"
       :itemSize="50"
       :radius="120"
       :angle-restriction="180"
-      id="main-menu"
+      style="margin: auto; margin-top: 300px; background-color: white"
     >
       <radial-menu-item
         v-for="(item, index) in items"
         :key="item"
-        style="background-color: white"
         @click="() => handleClick(item)"
+        style="background-color: white"
       >
         <span>{{ index }}</span>
       </radial-menu-item>
@@ -30,17 +30,21 @@ export default {
   props: ['hidden'],
   data() {
     return {
-      items: { users: 'user_index' }
-    }
-  },
-  methods: {
-    handleClick(item) {
-      this.$router.push({ name: item })
+      items: {
+        characters: 'characters',
+        spells: 'spells',
+        users: 'users'
+      }
     }
   },
   computed: {
     isHidden() {
       return this.hidden
+    }
+  },
+  methods: {
+    handleClick(item) {
+      this.$router.push({ name: item })
     }
   }
 }

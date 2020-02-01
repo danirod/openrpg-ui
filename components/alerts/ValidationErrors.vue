@@ -8,10 +8,10 @@
 
 <script>
 export default {
+  props: ['errors'],
   data() {
     return {}
   },
-  props: ['errors'],
   computed: {
     validationErrors() {
       let errors = Object.values(this.errors)
