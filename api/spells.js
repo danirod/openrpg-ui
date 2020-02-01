@@ -24,3 +24,25 @@ export const fetchSpellSuggestions = (payload) => {
       .catch((err) => reject(err))
   })
 }
+
+function SpellAdapter(data) {
+  return data
+}
+
+export const fetchSpells = () => {
+  const url = `/api/spells/`
+
+  return new Promise((resolve, reject) => {
+    fetch(url, {
+      credentials: 'same-origin'
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        }
+        throw new Error('unable to fetch spells')
+      })
+      .then((body) => resolve(body.data.map(SpellAdapter)))
+      .catch((err) => reject(err))
+  })
+}
