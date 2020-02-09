@@ -1,6 +1,11 @@
 <template>
   <div>
     <div>
+      <nuxt-link to="/spells/create">
+        <b-button size="sm" class="mr-1">Crear</b-button>
+      </nuxt-link>
+    </div>
+    <div>
       <b-form-group
         label="Buscar"
         label-cols-sm="3"
