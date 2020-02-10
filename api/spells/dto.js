@@ -22,7 +22,7 @@ export const CreateSpellAdapter = (payload) => {
     subclass: payload.subclass,
     duration: JSON.stringify({ code: payload.duration }),
     effect_area: JSON.stringify({ code: payload.effect_area }),
-    range: JSON.stringify({ code: payload.range }),
+    // range: JSON.stringify({ code: payload.range }),
     list_id: null
   }
 }

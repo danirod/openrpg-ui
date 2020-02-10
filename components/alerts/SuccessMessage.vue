@@ -1,7 +1,7 @@
 <template>
   <div @click="handleClick">
     <b-alert v-if="isSuccess" show variant="success">{{
-      success_message
+      successMessage
     }}</b-alert>
   </div>
 </template>
