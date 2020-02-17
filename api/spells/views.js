@@ -60,7 +60,7 @@ export const retrieveSpell = (id, axios) => {
       .then((res) => resolve(dto.RetrieveSpellAdapter(res.data)))
       .catch((err) => {
         const error = new Error(
-          'unable to create spell: ' + err.response.data.message
+          'unable to retrieve spell: ' + err.response.data.message
         )
         error.code = err.response.status
         error.data = err.response.data.errors
@@ -76,7 +76,23 @@ export const updateSpell = (id, payload, axios) => {
       .then((res) => resolve(res))
       .catch((err) => {
         const error = new Error(
-          'unable to create spell: ' + err.response.data.message
+          'unable to updae spell: ' + err.response.data.message
+        )
+        error.code = err.response.status
+        error.data = err.response.data.errors
+        reject(error)
+      })
+  })
+}
+
+export const deleteSpell = (id, axios) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .delete(`/api/spells/${id}`)
+      .then((res) => resolve(res))
+      .catch((err) => {
+        const error = new Error(
+          'unable to delete spell: ' + err.response.data.message
         )
         error.code = err.response.status
         error.data = err.response.data.errors

@@ -42,9 +42,25 @@
           >
             <b-button size="sm" class="mr-1">Editar</b-button>
           </router-link>
+          <b-button size="sm" class="mr-1" @click="confirmDeleteSpell(row.item)"
+            >Delete
+          </b-button>
         </template>
       </b-table>
     </div>
+    <b-modal id="modal-confirm-delete" ref="modal-confirm-delete" hide-footer>
+      <div class="d-block text-center">
+        <p>
+          ¿Quieres borrar
+          <b>{{ spellConfirm.level }}. {{ spellConfirm.name }}</b
+          >?
+        </p>
+        <b-button size="md" variant="success" @click="ok(spellConfirm.id)"
+          >OK</b-button
+        >
+        <b-button size="md" variant="danger" @click="cancel()">Cancel</b-button>
+      </div>
+    </b-modal>
   </div>
 </template>
 
@@ -70,6 +86,7 @@ export default {
   data() {
     return {
       // Table related
+      spellConfirm: { name: '', level: '' },
       allSpells: [],
       spells: [],
       fields: [
@@ -108,6 +125,32 @@ export default {
       this.isOpen = true
       const matches = new Map(suggs.map((sg) => [sg.id, true]))
       this.spells = this.allSpells.filter((s) => matches.get(s.id))
+    },
+    confirmDeleteSpell({ id, name, level }) {
+      this.spellConfirm = {
+        id,
+        name,
+        level
+      }
+      this.$refs['modal-confirm-delete'].show()
+    },
+    async ok(id) {
+      try {
+        await api.deleteSpell(id, this.$axios)
+        this.$bvModal.hide('modal-confirm-delete')
+        await this.fetchSpells()
+      } catch (err) {
+        console.error(err)
+        if (err.response.status === 403) {
+          this.$bvModal.hide('modal-confirm-delete')
+          this.spellConfirm = {}
+          this.validationErrors.push(err.data.message)
+        }
+      }
+    },
+    cancel() {
+      this.$bvModal.hide('modal-confirm-delete')
+      this.spellConfirm = {}
     }
   }
 }
