@@ -52,3 +52,35 @@ export const createSpell = (payload, axios) => {
       })
   })
 }
+
+export const retrieveSpell = (id, axios) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`/api/spells/${id}`)
+      .then((res) => resolve(dto.RetrieveSpellAdapter(res.data)))
+      .catch((err) => {
+        const error = new Error(
+          'unable to create spell: ' + err.response.data.message
+        )
+        error.code = err.response.status
+        error.data = err.response.data.errors
+        reject(error)
+      })
+  })
+}
+
+export const updateSpell = (id, payload, axios) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .patch(`/api/spells/${id}`, dto.CreateSpellAdapter(payload))
+      .then((res) => resolve(res))
+      .catch((err) => {
+        const error = new Error(
+          'unable to create spell: ' + err.response.data.message
+        )
+        error.code = err.response.status
+        error.data = err.response.data.errors
+        reject(error)
+      })
+  })
+}
