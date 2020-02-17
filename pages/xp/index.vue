@@ -1,13 +1,13 @@
 <template>
   <div ref="top">
     <validation-errors
-      :errors="validationErrors"
       v-if="validationErrors"
+      :errors="validationErrors"
     ></validation-errors>
     <success-message
-      @click="toggleSuccess"
       :success="success"
       :success_message="success_message"
+      @click="toggleSuccess"
     ></success-message>
     <div class="panel-body">
       <div class="container-fluid">
@@ -20,10 +20,10 @@
             >
               <b-form-select
                 id="character"
-                @change="fillFormWithCharLevel()"
                 v-model="selected.character"
                 :options="options"
                 required
+                @change="fillFormWithCharLevel()"
               ></b-form-select>
             </b-form-group>
           </div>
@@ -51,8 +51,8 @@
                   <b-form-input
                     ref="totalManeuver"
                     v-model="selected.xp.totalManeuver"
-                    @change="recalculateXP()"
                     type="number"
+                    @change="recalculateXP()"
                   ></b-form-input>
                 </b-input-group>
               </b-form>
@@ -69,34 +69,34 @@
                   <b-form-input
                     ref="casterLevel"
                     v-model="selected.casterLevel"
+                    type="number"
+                    min="1"
                     @change="
                       calculateXP(
                         `spell?caster=${selected.casterLevel}&spell=${selected.spellLevel}`,
                         'totalSpell'
                       )
                     "
-                    type="number"
-                    min="1"
                   ></b-form-input>
                   <b-form-input
                     ref="spellLevel"
                     v-model="selected.spellLevel"
+                    type="number"
+                    min="0"
                     @change="
                       calculateXP(
                         `spell?caster=${selected.casterLevel}&spell=${selected.spellLevel}`,
                         'totalSpell'
                       )
                     "
-                    type="number"
-                    min="0"
                   ></b-form-input>
                 </b-input-group>
                 <b-input-group prepend="Total">
                   <b-form-input
                     ref="totalSpell"
                     v-model="selected.xp.totalSpell"
-                    @change="recalculateXP()"
                     type="number"
+                    @change="recalculateXP()"
                   ></b-form-input>
                 </b-input-group>
               </b-form>
@@ -113,14 +113,14 @@
                   <b-form-input
                     ref="criticalTargetLevel"
                     v-model="selected.criticalTargetLevel"
+                    type="number"
+                    min="1"
                     @change="
                       calculateXP(
                         `critical?crit=${selected.critical}&level=${selected.criticalTargetLevel}`,
                         'totalCritical'
                       )
                     "
-                    type="number"
-                    min="1"
                   ></b-form-input>
                   <b-form-select
                     ref="critical"
@@ -138,8 +138,8 @@
                   <b-form-input
                     ref="totalCritical"
                     v-model="selected.xp.totalCritical"
-                    @change="recalculateXP()"
                     type="number"
+                    @change="recalculateXP()"
                   >
                   </b-form-input>
                 </b-input-group>
@@ -159,34 +159,34 @@
                   <b-form-input
                     ref="attackerLevel"
                     v-model="selected.attackerLevel"
+                    type="number"
+                    min="0"
                     @change="
                       calculateXP(
                         `kill?attack=${selected.attackerLevel}&def=${selected.defenderLevel}`,
                         'totalKill'
                       )
                     "
-                    type="number"
-                    min="0"
                   ></b-form-input>
                   <b-form-input
                     ref="defenderLevel"
                     v-model="selected.defenderLevel"
+                    type="number"
+                    min="1"
                     @change="
                       calculateXP(
                         `kill?attack=${selected.attackerLevel}&def=${selected.defenderLevel}`,
                         'totalKill'
                       )
                     "
-                    type="number"
-                    min="1"
                   ></b-form-input>
                 </b-input-group>
                 <b-input-group prepend="Total">
                   <b-form-input
                     ref="totalKill"
                     v-model="selected.xp.totalKill"
-                    @change="recalculateXP()"
                     type="number"
+                    @change="recalculateXP()"
                   >
                   </b-form-input>
                 </b-input-group>
@@ -204,14 +204,14 @@
                   <b-form-input
                     ref="attackerLevelBonus"
                     v-model="selected.attackerLevelBonus"
+                    type="number"
+                    min="1"
                     @change="
                       calculateXP(
                         `bonus?level=${selected.attackerLevelBonus}&code=${selected.bonusExp}`,
                         'totalBonus'
                       )
                     "
-                    type="number"
-                    min="1"
                   ></b-form-input>
                   <b-form-select
                     ref="bonus"
@@ -229,8 +229,8 @@
                   <b-form-input
                     ref="totalBonus"
                     v-model="selected.xp.totalBonus"
-                    @change="recalculateXP()"
                     type="number"
+                    @change="recalculateXP()"
                   ></b-form-input>
                 </b-input-group>
               </b-form>
@@ -246,8 +246,8 @@
                 <b-input-group prepend="Total">
                   <b-form-input
                     v-model="selected.xp.totalTravel"
-                    @change="recalculateXP()"
                     type="number"
+                    @change="recalculateXP()"
                   >
                   </b-form-input>
                 </b-input-group>
@@ -265,8 +265,8 @@
                   <b-form-input
                     ref="totalIdea"
                     v-model="selected.xp.totalIdea"
-                    @change="recalculateXP()"
                     type="number"
+                    @change="recalculateXP()"
                   >
                   </b-form-input>
                 </b-input-group>

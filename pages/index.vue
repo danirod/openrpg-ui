@@ -2,8 +2,8 @@
   <div>
     <div class="col-12">
       <hamburguer-menu
-        @click.native="hidden = !hidden"
         :overlay="hidden"
+        @click.native="hidden = !hidden"
       ></hamburguer-menu>
       <overlay :hidden="hidden"> </overlay>
       <radial-menu :hidden="hidden"></radial-menu>

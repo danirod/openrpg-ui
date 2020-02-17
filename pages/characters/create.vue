@@ -1,13 +1,13 @@
 <template>
   <div>
     <validation-errors
-      :errors="validationErrors"
       v-if="validationErrors"
+      :errors="validationErrors"
     ></validation-errors>
     <success-message
+      v-if="success"
       :success="success"
       :success_message="success_message"
-      v-if="success"
     ></success-message>
     <div class="panel-body">
       <form @submit="submitForm">
