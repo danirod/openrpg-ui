@@ -6,15 +6,15 @@
       </nuxt-link>
     </div>
     <validation-errors
-      :errors="validationErrors"
       v-if="validationErrors"
+      :errors="validationErrors"
     ></validation-errors>
     <success-message
-      :success="success"
-      :successMessage="successMessage"
       v-if="success"
+      :success="success"
+      :success-message="successMessage"
     ></success-message>
-    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+    <b-form v-if="show" @submit="onSubmit" @reset="onReset">
       <b-form-group
         id="input-group-name"
         label="Nombre:"
