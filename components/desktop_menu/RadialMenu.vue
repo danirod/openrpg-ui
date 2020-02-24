@@ -2,7 +2,7 @@
   <div v-if="!isHidden">
     <radial-menu
       id="main-menu"
-      :itemSize="50"
+      :item-size="50"
       :radius="120"
       :angle-restriction="180"
       style="margin: auto; margin-top: 300px; background-color: white"
@@ -10,8 +10,8 @@
       <radial-menu-item
         v-for="(item, index) in items"
         :key="item"
-        @click="() => handleClick(item)"
         style="background-color: white"
+        @click="() => handleClick(item)"
       >
         <span>{{ index }}</span>
       </radial-menu-item>

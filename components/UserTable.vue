@@ -1,8 +1,8 @@
 <template>
   <div>
     <validation-errors
-      :errors="validationErrors"
       v-if="validationErrors"
+      :errors="validationErrors"
     ></validation-errors>
     <b-table
       id="user-table"
@@ -21,9 +21,9 @@
           <b-button size="sm" class="mr-1">Editar</b-button>
         </router-link>
         <b-button
-          @click="confirmDeleteUser(row.item.id, row.item.email)"
           size="sm"
           class="mr-1"
+          @click="confirmDeleteUser(row.item.id, row.item.email)"
           >Eliminar</b-button
         >
       </template>
@@ -31,10 +31,10 @@
     <b-modal id="modal-confirm-delete" ref="modal-confirm-delete" hide-footer>
       <div class="d-block text-center">
         <p>¿Quieres borrar este usuario? {{ user_confirm.email }}</p>
-        <b-button @click="ok(user_confirm.id)" size="md" variant="success"
+        <b-button size="md" variant="success" @click="ok(user_confirm.id)"
           >OK</b-button
         >
-        <b-button @click="cancel()" size="md" variant="danger">Cancel</b-button>
+        <b-button size="md" variant="danger" @click="cancel()">Cancel</b-button>
       </div>
     </b-modal>
   </div>

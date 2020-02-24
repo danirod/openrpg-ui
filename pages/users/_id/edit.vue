@@ -2,13 +2,13 @@
   <div>
     <h2>Editar usuario {{ model.name }}</h2>
     <validation-errors
-      :errors="validationErrors"
       v-if="validationErrors"
+      :errors="validationErrors"
     ></validation-errors>
     <success-message
+      v-if="success"
       :success="success"
       :success_message="success_message"
-      v-if="success"
     ></success-message>
     <i>Dejar los campos password sin rellenar si no se quiere resetear</i>
     <div class="panel-body">

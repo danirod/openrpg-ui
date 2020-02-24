@@ -1,6 +1,6 @@
 <template>
   <span
-    v-bind:class="[isOverlay ? '' : 'hamburguer-overlay']"
+    :class="[isOverlay ? '' : 'hamburguer-overlay']"
     class="hamburger-menu"
   ></span>
 </template>
