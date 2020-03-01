@@ -38,7 +38,7 @@ export default {
     this.$axios
       .get(`/api/characters/${this.$route.params.id}`)
       .then((res) => {
-        this.character = res.data
+        this.character = res.data.data
       })
       .catch((err) => {
         console.log('cagada')

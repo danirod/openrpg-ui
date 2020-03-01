@@ -67,8 +67,7 @@ export default {
   methods: {
     getResults(ctx, callback) {
       this.$axios.get('/api/characters').then((response) => {
-        this.characters = response.data
-        this.totalRows = response.data.length
+        this.characters = response.data.data
         return this.characters
       })
     },

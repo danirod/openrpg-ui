@@ -66,8 +66,7 @@ export default {
     // Our method to GET results from a Laravel endpoint
     getResults(ctx, callback) {
       this.$axios.get('/api/users').then((response) => {
-        this.users = response.data
-        this.totalRows = response.data.length
+        this.users = response.data.data
         return this.users
       })
     },

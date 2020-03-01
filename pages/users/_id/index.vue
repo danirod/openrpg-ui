@@ -32,7 +32,7 @@ export default {
     this.$axios
       .get(`/api/users/${this.$route.params.id}`)
       .then((res) => {
-        this.user = res.data
+        this.user = res.data.data
       })
       .catch((err) => {
         console.log('cagada')

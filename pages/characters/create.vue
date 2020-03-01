@@ -75,7 +75,7 @@ export default {
     },
     getUsers(ctx, callback) {
       this.$axios.get('/api/users').then((response) => {
-        this.schema.selectField.values = response.data.map((u) => ({
+        this.schema.selectField.values = response.data.data.map((u) => ({
           id: u.id,
           name: u.name + ' (' + u.email + ')'
         }))

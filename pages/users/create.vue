@@ -62,7 +62,7 @@ export default {
       this.$axios
         .post(this.submit_url, this.model)
         .then((res) => {
-          if (res.status === 200) {
+          if (res.status === 201) {
             this.validationErrors = ''
             this.success = true
             this.success_message = res.data.message

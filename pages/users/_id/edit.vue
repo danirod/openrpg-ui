@@ -63,7 +63,7 @@ export default {
     this.$axios
       .get(`/api/users/${this.$route.params.id}`)
       .then((res) => {
-        this.model = res.data
+        this.model = res.data.data
       })
       .catch((err) => {
         this.errors.push(err)

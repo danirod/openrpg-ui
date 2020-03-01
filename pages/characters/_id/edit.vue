@@ -87,7 +87,7 @@ export default {
     this.$axios
       .get(`/api/characters/${this.$route.params.id}`)
       .then((res) => {
-        this.characterModel = res.data
+        this.characterModel = res.data.data
       })
       .catch((err) => {
         this.errors.push(err)
