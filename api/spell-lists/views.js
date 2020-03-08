@@ -35,7 +35,7 @@ export const retrieveSpellList = (id, axios) => {
   return new Promise((resolve, reject) => {
     axios
       .get(`/api/spell-lists/${id}`)
-      .then((res) => resolve(dto.RetrieveSpellListAdapter(res.data)))
+      .then((res) => resolve(dto.RetrieveSpellListAdapter(res.data.data)))
       .catch((err) => {
         const error = new Error(
           'unable to retrieve spell list: ' + err.response.data.message
@@ -54,7 +54,7 @@ export const updateSpellList = (id, payload, axios) => {
       .then((res) => resolve(res))
       .catch((err) => {
         const error = new Error(
-          'unable to updae spell list: ' + err.response.data.message
+          'unable to update spell list: ' + err.response.data.message
         )
         error.code = err.response.status
         error.data = err.response.data.errors

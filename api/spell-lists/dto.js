@@ -2,6 +2,7 @@ import { rolemaster } from '~/config'
 
 export const SpellListAdapter = (data) => {
   return {
+    id: data.id,
     name: data.name,
     description: data.description,
     notes: data.notes,
@@ -21,16 +22,8 @@ export const CreateSpellListAdapter = (payload) => {
 export const RetrieveSpellListAdapter = (payload) => {
   return {
     name: payload.name,
-    level: parseInt(payload.level, 10),
     notes: payload.notes,
     description: payload.description,
-    list_name: payload.list_name,
-    type: payload.code,
-    clazz: payload.class,
-    subclass: payload.subclass,
-    duration: JSON.parse(payload.duration).code,
-    effect_area: JSON.parse(payload.effect_area).code,
-    range: JSON.parse(payload.range).code,
-    list_id: null
+    type: payload.list_type
   }
 }
