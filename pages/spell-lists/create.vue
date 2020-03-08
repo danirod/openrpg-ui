@@ -1,23 +1,30 @@
 <template>
   <div>
-    <validation-errors
-      v-if="validationErrors"
-      :errors="validationErrors"
-    ></validation-errors>
-    <success-message
-      v-if="success"
-      :success="success"
-      :successMessage="successMessage"
-    ></success-message>
-    <div class="panel-body">
-      <form @submit.prevent="submitForm">
-        <vue-form-generator
-          :schema="schema"
-          :model="model"
-          :options="formOptions"
-        ></vue-form-generator>
-        <b-button type="submit">Crear lista de hechizo</b-button>
-      </form>
+    <div>
+      <nuxt-link to="/spell-lists/">
+        <b-button size="sm" class="mr-1">Listas de hechizos</b-button>
+      </nuxt-link>
+    </div>
+    <div>
+      <validation-errors
+        v-if="validationErrors"
+        :errors="validationErrors"
+      ></validation-errors>
+      <success-message
+        v-if="success"
+        :success="success"
+        :success-message="successMessage"
+      ></success-message>
+      <div class="panel-body">
+        <form @submit.prevent="submitForm">
+          <vue-form-generator
+            :schema="schema"
+            :model="model"
+            :options="formOptions"
+          ></vue-form-generator>
+          <b-button type="submit">Crear lista de hechizo</b-button>
+        </form>
+      </div>
     </div>
   </div>
 </template>

@@ -27,3 +27,12 @@ export const RetrieveSpellListAdapter = (payload) => {
     type: payload.list_type
   }
 }
+
+export const RetrieveSpellListTypeEnrichedAdapter = (payload) => {
+  return {
+    name: payload.name,
+    notes: payload.notes,
+    description: payload.description,
+    type: rolemaster.spellListTypes[payload.list_type]
+  }
+}

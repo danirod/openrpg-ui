@@ -14,8 +14,6 @@ export const fetchSpellLists = (axios) => {
 }
 
 export const createSpellList = (payload, axios) => {
-  const o = dto.CreateSpellListAdapter(payload)
-  console.log('rsult dto', o)
   return new Promise((resolve, reject) => {
     axios
       .post('/api/spell-lists/', dto.CreateSpellListAdapter(payload))
@@ -31,11 +29,15 @@ export const createSpellList = (payload, axios) => {
   })
 }
 
-export const retrieveSpellList = (id, axios) => {
+export const retrieveSpellList = (
+  id,
+  axios,
+  dtoImpl = dto.RetrieveSpellListAdapter
+) => {
   return new Promise((resolve, reject) => {
     axios
       .get(`/api/spell-lists/${id}`)
-      .then((res) => resolve(dto.RetrieveSpellListAdapter(res.data.data)))
+      .then((res) => resolve(dtoImpl(res.data.data)))
       .catch((err) => {
         const error = new Error(
           'unable to retrieve spell list: ' + err.response.data.message

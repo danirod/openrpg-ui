@@ -16,11 +16,13 @@
         busy.sync="true"
       >
         <template v-slot:cell(actions)="row">
-          <router-link :to="{ name: 'spells-id', params: { id: row.item.id } }">
+          <router-link
+            :to="{ name: 'spell-lists-id', params: { id: row.item.id } }"
+          >
             <b-button size="sm" class="mr-1">Ver</b-button>
           </router-link>
           <router-link
-            :to="{ name: 'spells-id-edit', params: { id: row.item.id } }"
+            :to="{ name: 'spell-lists-id-edit', params: { id: row.item.id } }"
           >
             <b-button size="sm" class="mr-1">Editar</b-button>
           </router-link>
