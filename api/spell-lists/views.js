@@ -14,6 +14,8 @@ export const fetchSpellLists = (axios) => {
 }
 
 export const createSpellList = (payload, axios) => {
+  const o = dto.CreateSpellListAdapter(payload)
+  console.log('rsult dto', o)
   return new Promise((resolve, reject) => {
     axios
       .post('/api/spell-lists/', dto.CreateSpellListAdapter(payload))

@@ -11,18 +11,10 @@ export const SpellListAdapter = (data) => {
 
 export const CreateSpellListAdapter = (payload) => {
   return {
+    list_type: payload.type,
     name: payload.name,
-    level: parseInt(payload.level, 10),
     notes: payload.notes,
-    description: payload.description,
-    list_name: payload.list_name,
-    code: payload.type,
-    class: payload.clazz,
-    subclass: payload.subclass,
-    duration: JSON.stringify({ code: payload.duration }),
-    effect_area: JSON.stringify({ code: payload.effect_area }),
-    range: JSON.stringify({ code: payload.range }),
-    list_id: null
+    description: payload.description
   }
 }
 
