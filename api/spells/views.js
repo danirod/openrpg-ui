@@ -76,7 +76,7 @@ export const updateSpell = (id, payload, axios) => {
       .then((res) => resolve(res))
       .catch((err) => {
         const error = new Error(
-          'unable to updae spell: ' + err.response.data.message
+          'unable to update spell: ' + err.response.data.message
         )
         error.code = err.response.status
         error.data = err.response.data.errors

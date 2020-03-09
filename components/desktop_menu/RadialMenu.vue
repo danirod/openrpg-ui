@@ -33,6 +33,7 @@ export default {
       items: {
         characters: 'characters',
         spells: 'spells',
+        'spell-lists': 'spell-lists',
         users: 'users'
       }
     }
