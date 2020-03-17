@@ -36,3 +36,8 @@ export const RetrieveSpellListTypeEnrichedAdapter = (payload) => {
     type: rolemaster.spellListTypes[payload.list_type]
   }
 }
+
+export const SearchResultAdapter = (spellList) => {
+  const { id, name } = spellList
+  return { id, name }
+}
