@@ -83,19 +83,10 @@
         label-for="input-list"
         description="Lista de hechizo"
       >
-        <b-form-select
-          v-model="form.list_id"
-          :options="options"
-          class="mb-3"
+        <SpellListDropdown
+          :selected="form.list_id"
           @change="onListChanged(form.list_id)"
-        >
-          <!-- This slot appears above the options from 'options' prop -->
-          <template v-slot:first>
-            <b-form-select-option :value="null" disabled
-              >-- Please select an option --</b-form-select-option
-            >
-          </template>
-        </b-form-select>
+        />
       </b-form-group>
 
       <b-form-group id="input-group-type" label="Tipo:" label-for="input-type">
@@ -180,10 +171,10 @@
 
 <script>
 import * as api from '~/api/spells'
-import * as spellListApi from '~/api/spell-lists'
 import * as spellsConfig from '~/data/spells'
 import SuccessMessage from '~/components/alerts/SuccessMessage'
 import ValidationErrors from '~/components/alerts/ValidationErrors'
+import { SpellListDropdown } from '~/components/dropdowns'
 
 const toSelect = (config) =>
   Object.values(config).map((c) => ({
@@ -208,7 +199,8 @@ const formInitial = {
 export default {
   components: {
     ValidationErrors,
-    SuccessMessage
+    SuccessMessage,
+    SpellListDropdown
   },
   data() {
     return {
@@ -219,8 +211,6 @@ export default {
       initial: formInitial,
       form: { ...formInitial },
       config: { ...spellsConfig },
-      lists: null,
-      options: [],
       selectedOption: null
     }
   },
@@ -255,16 +245,6 @@ export default {
       this.initial = spell
       this.form = spell
       this.initial = spell
-      const lists = await spellListApi.fetchSpellLists(this.$axios)
-      this.lists = new Map(
-        lists.map((item) => {
-          const { id, name } = item
-          return [id, name]
-        })
-      )
-      this.options = lists
-        .map(spellListApi.SearchResultAdapter)
-        .map((item) => ({ value: item.id, text: item.name }))
     } catch (e) {
       this.success = false
       this.successMessage = ''
@@ -287,12 +267,12 @@ export default {
       }
     },
     onListChanged(listId) {
-      console.log('ochaned', arguments)
+      console.log(arguments)
       if (listId === null) {
         this.form.list_name = ''
         this.form.list_id = null
       } else {
-        this.form.list_name = this.lists.get(listId)
+        this.form.list_name = 'TODO'
         this.form.list_id = listId
       }
     },
