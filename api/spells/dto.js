@@ -1,5 +1,5 @@
 export const SpellAdapter = (data) => {
-  return data
+  return { ...data }
 }
 
 export const SpellSuggestionAdapter = (spells) => {

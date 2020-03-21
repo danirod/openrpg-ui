@@ -37,6 +37,19 @@ export const fetchSpells = () => {
   })
 }
 
+export const fetchSpellsForList = (listId, axios) => {
+  const url = `/api/spell-lists/${listId}/spells`
+
+  return new Promise((resolve, reject) => {
+    axios
+      .get(url)
+      .then((res) => {
+        resolve(res.data.data.map(dto.SpellAdapter))
+      })
+      .catch((err) => reject(err))
+  })
+}
+
 export const createSpell = (payload, axios) => {
   return new Promise((resolve, reject) => {
     axios
