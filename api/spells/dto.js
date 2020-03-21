@@ -23,7 +23,7 @@ export const CreateSpellAdapter = (payload) => {
     duration: JSON.stringify({ code: payload.duration }),
     effect_area: JSON.stringify({ code: payload.effect_area }),
     range: JSON.stringify({ code: payload.range }),
-    list_id: null
+    list_id: payload.list_id
   }
 }
 
@@ -40,6 +40,6 @@ export const RetrieveSpellAdapter = (payload) => {
     duration: JSON.parse(payload.duration).code,
     effect_area: JSON.parse(payload.effect_area).code,
     range: JSON.parse(payload.range).code,
-    list_id: null
+    list_id: payload.list_id
   }
 }
