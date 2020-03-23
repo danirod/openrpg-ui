@@ -37,7 +37,7 @@
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-nuxt": "^0.5.1",
     "eslint-plugin-prettier": "^3.0.1",
-    "prettier": "^1.16.4",
+    "prettier": "^2.0.1",
     "require-extension-hooks": "^0.3.3",
     "require-extension-hooks-babel": "^1.0.0",
     "require-extension-hooks-vue": "^3.0.0"
