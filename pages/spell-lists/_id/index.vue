@@ -27,16 +27,27 @@
           <p>{{ spellList.notes || '--' }}</p>
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-12">
+          <SpellsTable :spells="spells" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import * as api from '~/api/spell-lists'
+import * as spellsApi from '~/api/spells'
+import SpellsTable from '~/components/SpellsTable'
 
 export default {
+  components: {
+    SpellsTable
+  },
   data() {
     return {
+      spells: [],
       spellList: {
         type: {}
       }
@@ -48,16 +59,27 @@ export default {
     }
   },
   async mounted() {
-    try {
-      const spellList = await api.retrieveSpellList(
-        this.id,
-        this.$axios,
-        api.RetrieveSpellListTypeEnrichedAdapter
-      )
-      console.log(this.spellList)
-      this.spellList = spellList
-    } catch (err) {
-      console.error('404 spell list not found')
+    this.spellList = await this.fetchList()
+    this.spells = await this.fetchSpells()
+  },
+  methods: {
+    async fetchList() {
+      try {
+        return await api.retrieveSpellList(
+          this.id,
+          this.$axios,
+          api.RetrieveSpellListTypeEnrichedAdapter
+        )
+      } catch (err) {
+        console.error('404 spell list not found', err)
+      }
+    },
+    async fetchSpells() {
+      try {
+        return await spellsApi.fetchSpellsForList(this.id, this.$axios)
+      } catch (e) {
+        console.error(e)
+      }
     }
   }
 }
