@@ -287,7 +287,6 @@ export default {
       }
     },
     onListChanged(listId) {
-      console.log('ochaned', arguments)
       if (listId === null) {
         this.form.list_name = ''
         this.form.list_id = null

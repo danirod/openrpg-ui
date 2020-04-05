@@ -78,18 +78,24 @@
       </b-form-group>
 
       <b-form-group
-        id="input-group-spell-list"
+        id="input-group-list"
         label="Lista:"
-        label-for="input-spell-list"
-        description="La lista a la que pertenece el hechizo (TODO: Sustituir con un dropdown)"
+        label-for="input-list"
+        description="Lista de hechizo"
       >
-        <b-form-input
-          id="input-spell-list"
-          v-model="form.list_name"
-          required
-          placeholder="Nombre de la lista del hechizo"
+        <b-form-select
+          v-model="form.list_id"
+          :options="options"
+          class="mb-3"
+          @change="onListChanged(form.list_id)"
         >
-        </b-form-input>
+          <!-- This slot appears above the options from 'options' prop -->
+          <template v-slot:first>
+            <b-form-select-option :value="null" disabled
+              >-- Please select an option --</b-form-select-option
+            >
+          </template>
+        </b-form-select>
       </b-form-group>
 
       <b-form-group id="input-group-type" label="Tipo:" label-for="input-type">
@@ -174,6 +180,7 @@
 
 <script>
 import * as api from '~/api/spells'
+import * as spellListApi from '~/api/spell-lists'
 import * as spellsConfig from '~/data/spells'
 import SuccessMessage from '~/components/alerts/SuccessMessage'
 import ValidationErrors from '~/components/alerts/ValidationErrors'
@@ -194,13 +201,26 @@ const formInitial = {
   clazz: 'I',
   effect_area: 'SELF',
   duration: 'C',
-  range: 'SELF'
+  range: 'SELF',
+  list_id: null
 }
 
 export default {
   components: {
     ValidationErrors,
     SuccessMessage
+  },
+  async asyncData({ $axios }) {
+    const lists = await spellListApi.fetchSpellLists($axios)
+    return {
+      lists: lists.reduce((acc, cur) => {
+        acc.set(cur.id, cur.name)
+        return acc
+      }, new Map()),
+      options: lists
+        .map(spellListApi.SearchResultAdapter)
+        .map((item) => ({ value: item.id, text: item.name }))
+    }
   },
   data() {
     return {
@@ -210,7 +230,9 @@ export default {
       validationErrors: null,
       initial: formInitial,
       form: { ...formInitial },
-      config: { ...spellsConfig }
+      config: { ...spellsConfig },
+      lists: null,
+      options: []
     }
   },
   computed: {
@@ -246,6 +268,15 @@ export default {
         this.success = false
         this.successMessage = ''
         this.validationErrors = e.data
+      }
+    },
+    onListChanged(listId) {
+      if (listId === null) {
+        this.form.list_name = ''
+        this.form.list_id = null
+      } else {
+        this.form.list_name = this.lists.get(listId)
+        this.form.list_id = listId
       }
     },
     onReset(evt) {
