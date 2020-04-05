@@ -210,6 +210,18 @@ export default {
     ValidationErrors,
     SuccessMessage
   },
+  async asyncData({ $axios }) {
+    const lists = await spellListApi.fetchSpellLists($axios)
+    return {
+      lists: lists.reduce((acc, cur) => {
+        acc.set(cur.id, cur.name)
+        return acc
+      }, new Map()),
+      options: lists
+        .map(spellListApi.SearchResultAdapter)
+        .map((item) => ({ value: item.id, text: item.name }))
+    }
+  },
   data() {
     return {
       show: true,
@@ -242,18 +254,6 @@ export default {
     ranges() {
       return toSelect(this.config.range)
     }
-  },
-  async mounted() {
-    const lists = await spellListApi.fetchSpellLists(this.$axios)
-    this.lists = new Map(
-      lists.map((item) => {
-        const { id, name } = item
-        return [id, name]
-      })
-    )
-    this.options = lists
-      .map(spellListApi.SearchResultAdapter)
-      .map((item) => ({ value: item.id, text: item.name }))
   },
   methods: {
     async onSubmit(evt) {
