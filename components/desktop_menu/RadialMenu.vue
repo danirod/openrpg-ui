@@ -1,24 +1,22 @@
 <template>
-  <client-only>
-    <div v-if="!isHidden">
-      <radial-menu
-        id="main-menu"
-        :item-size="50"
-        :radius="120"
-        :angle-restriction="180"
-        style="margin: auto; margin-top: 300px; background-color: white;"
+  <div v-if="!isHidden">
+    <radial-menu
+      id="main-menu"
+      :item-size="50"
+      :radius="120"
+      :angle-restriction="180"
+      style="margin: auto; margin-top: 300px; background-color: white;"
+    >
+      <radial-menu-item
+        v-for="(item, index) in items"
+        :key="item"
+        style="background-color: white;"
+        @click="() => handleClick(item)"
       >
-        <radial-menu-item
-          v-for="(item, index) in items"
-          :key="item"
-          style="background-color: white;"
-          @click="() => handleClick(item)"
-        >
-          <span>{{ index }}</span>
-        </radial-menu-item>
-      </radial-menu>
-    </div>
-  </client-only>
+        <span>{{ index }}</span>
+      </radial-menu-item>
+    </radial-menu>
+  </div>
 </template>
 
 <script>
