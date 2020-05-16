@@ -20,7 +20,8 @@
 </template>
 
 <script>
-import { RadialMenu, RadialMenuItem } from 'vue-radial-menu'
+import RadialMenu from 'vue-radial-menu/src/components/RadialMenu.vue'
+import RadialMenuItem from 'vue-radial-menu/src/components/RadialMenuItem.vue'
 
 export default {
   components: {
