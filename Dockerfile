@@ -1,4 +1,4 @@
-FROM node:12-alpine3.11
+FROM node:14-alpine3.11
 
 RUN mkdir -p /openrpg
 WORKDIR /openrpg
