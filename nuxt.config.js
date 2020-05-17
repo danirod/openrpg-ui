@@ -1,3 +1,16 @@
+// Setup proxy to OpenRPG backend.
+const backend = {
+  protocol: process.env.BACKEND_PROTOCOL || 'http',
+  domain: process.env.BACKEND_HOST || 'localhost',
+  port: process.env.BACKEND_PORT || 8000,
+  path: process.env.BACKEND_PATH || '/api'
+}
+const toURL = (b) =>
+  `${b.protocol}://${b.domain}:${b.port}` +
+  (b.path.startsWith('/') ? '' : '/') +
+  b.path
+const proxy = process.env.BACKEND_DISABLE ? [] : [toURL(backend)]
+
 export default {
   mode: 'universal',
   /*
@@ -77,7 +90,7 @@ export default {
     }
   },
 
-  proxy: ['http://localhost:8000/api'],
+  proxy,
 
   /*
    ** Build configuration
