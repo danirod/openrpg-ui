@@ -1,4 +1,5 @@
-name: ESLint
+
+name: E2E Test Suite
 on: [push]
 jobs:
   build:
@@ -9,4 +10,9 @@ jobs:
       with:
         node-version: '12.16'
     - run: yarn install
-    - run: yarn lint
+    - name: Cypress
+      uses: cypress-io/github-action@v1
+      with:
+        build: yarn build
+        start: yarn start --spa
+        wait-on: 'http://localhost:3000'

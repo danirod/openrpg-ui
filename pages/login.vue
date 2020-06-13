@@ -6,7 +6,7 @@
       <form @submit.prevent="submitForm">
         <div class="row my-1">
           <div class="col-sm-3">
-            <label for="character-name">E-mail</label>
+            <label for="email">E-mail</label>
           </div>
           <div class="col-sm-4">
             <b-form-input id="email" v-model="email"></b-form-input>
@@ -15,7 +15,7 @@
         </div>
         <div class="row my-1">
           <div class="col-sm-3">
-            <label for="experience">Password</label>
+            <label for="password">Password</label>
           </div>
           <div class="col-sm-4">
             <b-form-input
