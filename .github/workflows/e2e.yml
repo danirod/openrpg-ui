@@ -1,0 +1,16 @@
+
+name: E2E Test Suite
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - name: Cypress
+      uses: cypress-io/github-action@v1
+      with:
+        start: yarn dev --spa
+        wait-on: 'http://localhost:3000'
