@@ -9,8 +9,10 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '12.x'
+    - run: yarn install
     - name: Cypress
       uses: cypress-io/github-action@v1
       with:
         start: yarn dev --spa
         wait-on: 'http://localhost:3000'
+        wait-on-timeout: 120
