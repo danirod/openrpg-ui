@@ -14,9 +14,11 @@ describe('Users', () => {
 
     /* Can see users. */
     cy.visit('/users')
-    cy.contains('Admin Fuckencio').parent('tr').within(() => {
-      cy.contains('Ver').click()
-    })
+    cy.contains('Admin Fuckencio')
+      .parent('tr')
+      .within(() => {
+        cy.contains('Ver').click()
+      })
 
     /* Can detail users. */
     cy.contains('Usuario Admin Fuckencio')
