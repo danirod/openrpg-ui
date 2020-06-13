@@ -14,7 +14,8 @@
     "storybook": "start-storybook",
     "test": "ava",
     "test:unit": "cross-env TEST=unit ava --config unit.config.js",
-    "test:e2e": "cross-env TEST=e2e ava --config e2e.config.js"
+    "cypress": "cypress run",
+    "cypress:open": "cypress open",
   },
   "dependencies": {
     "@nuxtjs/auth": "^4.9.1",
@@ -43,6 +44,7 @@
     "babel-preset-vue": "^2.0.2",
     "browser-env": "^3.2.5",
     "core-js": "2",
+    "cypress": "^4.8.0",
     "eslint": "^7.1.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-nuxt": "^1.0.0",
