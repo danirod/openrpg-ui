@@ -1,0 +1,20 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "title": "Una campaña",
+      "description": "Una descripción",
+      "links": {
+        "self": "http://localhost:8000/api/campaigns/1"
+      }
+    }
+  ],
+  "meta": {
+    "current_page": 1,
+    "per_page": 15,
+    "total": 1
+  },
+  "links": {
+    "self": "http://localhost:8000/api/campaigns"
+  }
+}

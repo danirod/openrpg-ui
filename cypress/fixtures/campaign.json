@@ -1,0 +1,10 @@
+{
+  "data": {
+    "id": 1,
+    "title": "Una campaña",
+    "description": "Una descripción"
+  },
+  "links": {
+    "self": "http://localhost:8000/api/campaigns/1"
+  }
+}
