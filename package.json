@@ -23,7 +23,7 @@
     "bootstrap": "^4.5.0",
     "bootstrap-vue": "^2.15.0",
     "nuxt": "^2.12.2",
-    "vue": "^2.6.11",
+    "vue": "^2.6.12",
     "vue-form-generator": "^2.3.4",
     "vue-radial-menu": "^1.1.1"
   },
@@ -55,6 +55,6 @@
     "require-extension-hooks-babel": "^1.0.0",
     "require-extension-hooks-vue": "^3.0.0",
     "vue-loader": "^15.9.2",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.12"
   }
 }
