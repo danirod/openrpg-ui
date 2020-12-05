@@ -34,7 +34,7 @@
     "@nuxtjs/eslint-module": "^3.0.0",
     "@storybook/addon-actions": "^5.3.19",
     "@storybook/addon-console": "^1.2.1",
-    "@storybook/addon-knobs": "^5.3.19",
+    "@storybook/addon-knobs": "^6.1.10",
     "@storybook/vue": "^5.3.19",
     "@vue/test-utils": "^1.0.3",
     "ava": "^3.8.2",
