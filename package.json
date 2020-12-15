@@ -32,7 +32,7 @@
     "@babel/core": "^7.10.2",
     "@nuxtjs/eslint-config": "^5.0.0",
     "@nuxtjs/eslint-module": "^3.0.0",
-    "@storybook/addon-actions": "^5.3.19",
+    "@storybook/addon-actions": "^6.1.11",
     "@storybook/addon-console": "^1.2.1",
     "@storybook/addon-knobs": "^5.3.19",
     "@storybook/vue": "^5.3.19",
