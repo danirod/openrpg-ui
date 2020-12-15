@@ -399,7 +399,7 @@ export default {
           this.selected.xp[ref] = res.data.message
           this.recalculateXP()
         })
-        .catch((err) => {
+        .catch(() => {
           this.selected.xp[ref] = 0
           this.recalculateXP()
         })

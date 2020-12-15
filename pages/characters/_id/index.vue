@@ -40,7 +40,7 @@ export default {
       .then((res) => {
         this.character = res.data.data
       })
-      .catch((err) => {
+      .catch(() => {
         console.log('cagada')
       })
   }
