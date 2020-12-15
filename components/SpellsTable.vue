@@ -76,6 +76,7 @@ export default {
   },
   methods: {
     async fetchSpells() {
+      // eslint-disable-next-line
       this.spells = await api.fetchSpells()
     },
     confirmDeleteSpell({ id, name, level }) {
