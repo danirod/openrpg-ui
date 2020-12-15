@@ -17,6 +17,7 @@ module.exports = {
   plugins: ['prettier'],
   // add your custom rules here
   rules: {
-    'handle-callback-err': 'off'
+    'handle-callback-err': 'off',
+    'vue/comment-directive': 'off'
   }
 }
