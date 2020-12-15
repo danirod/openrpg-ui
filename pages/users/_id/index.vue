@@ -34,7 +34,7 @@ export default {
       .then((res) => {
         this.user = res.data.data
       })
-      .catch((err) => {
+      .catch(() => {
         console.log('cagada')
       })
   }

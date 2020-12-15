@@ -87,7 +87,7 @@ export default {
           range: prettyPrint(res.data.range)
         }
       })
-      .catch((err) => {
+      .catch(() => {
         console.log('cagada')
       })
   }
