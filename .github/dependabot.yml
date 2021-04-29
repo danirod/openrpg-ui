@@ -1,0 +1,17 @@
+version: 2
+updates:
+- package-ecosystem: docker
+  directory: "/"
+  schedule:
+    interval: weekly
+    day: saturday
+    time: "06:00"
+  open-pull-requests-limit: 99
+  reviewers:
+  - danirod
+  labels:
+  - dependencies
+  ignore:
+  - dependency-name: node
+    versions:
+    - ">= 15.pre.alpine3.a, < 16"
